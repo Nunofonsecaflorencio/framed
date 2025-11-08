@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>📸 PDF Frame Generator</title>
+		<style>
+			body {
+				font-family: sans-serif;
+				text-align: center;
+				margin: 50px;
+			}
+			form {
+				display: inline-block;
+				border: 1px solid #ccc;
+				padding: 20px;
+				border-radius: 10px;
+			}
+			input,
+			select,
+			button {
+				margin: 10px;
+				padding: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>📸 Generate Framed Photo PDF</h1>
+		<form method="POST" enctype="multipart/form-data">
+			<label for="frame_size">Choose frame size:</label><br />
+			<select name="frame_size" id="frame_size" required>
+				{% for size in frame_sizes %}
+				<option value="{{ size }}">{{ size }}</option>
+				{% endfor %}</select
+			><br />
+
+			<label for="images">Upload images:</label><br />
+			<input
+				type="file"
+				name="images"
+				id="images"
+				multiple
+				required
+			/><br /><br />
+
+			<button type="submit">Generate PDF</button>
+		</form>
+
+		<br /><br />
+		<a href="{{ url_for('download_pdf') }}"
+			>⬇️ Download last generated PDF</a
+		>
+	</body>
+</html>
